@@ -10,8 +10,11 @@ class Game:
         winner = 0
 
         def __init__(self):
-                pass
+                self.new_game()
         def new_game(self):
+				move = 1
+				game = []
+				winner = 0
                 for i in range(3):
                         b=[]
                         for j in range(3):
