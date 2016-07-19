@@ -11,15 +11,17 @@ class Game:
 
         def __init__(self):
                 self.new_game()
+                
         def new_game(self):
-				move = 1
-				game = []
-				winner = 0
+		move = 1
+		game = []
+		winner = 0
                 for i in range(3):
                         b=[]
                         for j in range(3):
                             b.append(3*i+j)
                         self.game.append(b)
+                        
         def test(self):
                 for i in range(3):
                         
