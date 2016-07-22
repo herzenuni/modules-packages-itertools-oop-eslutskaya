@@ -1,13 +1,18 @@
-
-
 ## game.py
 ## В этом файле будет располагаться класс, в котором
 ##  будет содержаться логика игры
+
+from collections import namedtuple
+
 
 class Game:
         move = 1
         game = []
         winner = 0
+
+        Config = namedtuple("Config" , ["whos_turn", "field_size", "path_to_stat_file", "window_size"])
+
+        main_config = Config("Cross", "3", "stat.csv", "360")
 
         def __init__(self):
                 self.new_game()
@@ -56,4 +61,10 @@ class Game:
                                 e.widget["text"] = "O"
                                 self.move = 1
                             self.test()
-                     
+
+        def return_config(self):
+            return Game.main_config
+
+
+
+        
