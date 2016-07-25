@@ -1,11 +1,15 @@
-
-
 ## game.py
 ## В этом файле будет располагаться класс, в котором
 ##  будет содержаться логика игры
 from graphics import *
 from tkinter import *
+from collections import namedtuple
 class Game:
+
+        Config = namedtuple("Config" , ["whos_turn", "field_size", "path_to_stat_file", "window_size"])
+
+        main_config = Config("Cross", "3", "stat.csv", "360")
+
         def __init__(self):
                 self.new_game()
       
@@ -47,7 +51,8 @@ class Game:
                                 self.move = 1
                                 self.test()
                                 return 0
+
 game = Game()
 root = Tk()
 graphics = Graphics(root,game)
-root.mainloop()                    
+root.mainloop()
