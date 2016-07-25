@@ -15,7 +15,7 @@ class Stat:
 	 - записывать в файл результат, 
 	 - показать последний результат.
 	"""
-	Result = namedtuple("Result" , ["winner_id", "winner_name", "game_time", "type_of_mark"])
+	Result = namedtuple("Result", ["game_id", "winner_id", "player1_name", "player2_name", "winner_name", "game_time", "type_of_mark"])
 	
 	# new_result1 = Result("1", "Ivan", "600", "nought")
 	# new_result2 = Result("2", "Sveta", "324", "cross")
@@ -23,9 +23,8 @@ class Stat:
 	file = None
 
 
-	def __init__(self, result, file):
+	def __init__(self, file):
 		"""конструктор класса"""
-		self.new_result = result
 		Stat.file = file
 
 	def get_results_from_file(self):
@@ -65,13 +64,12 @@ class Stat:
 				print(el.winner_id, el.winner_name, el.game_time, el.type_of_mark)
 		return self.new_result
 
-Result = namedtuple("Result" , ["winner_id", "winner_name", "game_time", "type_of_mark"])
-new_result1 = Result("1", "Ivan", "600", "nought")
-new_result2 = Result("2", "Sveta", "324", "cross")
+# Result = namedtuple("Result" , ["winner_id", "winner_name", "game_time", "type_of_mark"])
+# new_result1 = Result("1", "Ivan", "600", "nought")
+# new_result2 = Result("2", "Sveta", "324", "cross")
 
-file = 'stat.csv'
-new_stat = Stat(new_result2, file)
-new_stat.get_results_from_file()
+new_stat = Stat(file = '1.conf')
+# new_stat.get_results_from_file()
 # new_stat.write_result_to_file()
 
-new_stat.print_result(print_all = True)
+# new_stat.print_result(print_all = True)

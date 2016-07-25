@@ -5,12 +5,11 @@ import player
 import stat
 import graphics
 
-DEFAULT_CFG = 'default.py'
-
 
 class Main:
 	"""Класс для запуска игры, объединяющий все остальное"""
-	def __init__(self, *, config=DEFAULT_CFG):
+	def __init__(self):
 		pass
+
 
 game = Main()

@@ -1,23 +1,27 @@
 ## game.py
 ## В этом файле будет располагаться класс, в котором
 ##  будет содержаться логика игры
+from config import config
 from graphics import *
+from stat import *
 from tkinter import *
+
 from collections import namedtuple
+
+
+import player
 class Game:
 
-        Config = namedtuple("Config" , ["whos_turn", "field_size", "path_to_stat_file", "window_size"])
+        def __init__(self, whos_turn, path_to_stat_file, field_size, stat):
+                self.new_game(whos_turn, path_to_stat_file, field_size, stat)
 
-        main_config = Config("Cross", "3", "stat.csv", "360")
-
-        def __init__(self):
-                self.new_game()
       
-        def new_game(self):
-                self.move = 1
+        def new_game(self, whos_turn, path_to_stat_file, field_size, stat):
+                self.move = whos_turn
                 self.game = []
-                self.winner = 0
-                self.n = 3
+                self.winner = 0     #TODO Use None, young padavan
+                self.n = field_size
+                # print (type (stat))
                 for i in range(self.n):
                         b=[]
                         for j in range(self.n):
@@ -52,7 +56,12 @@ class Game:
                                 self.test()
                                 return 0
 
-game = Game()
+stat = Stat(config["path_to_stat_file"])
+
+
+game = Game(config["whos_turn"], config["path_to_stat_file"], config["field_size"], stat)
+
 root = Tk()
-graphics = Graphics(root,game)
+graphics = Graphics(root, game, config["canvas_size"], config["field_size"])
+
 root.mainloop()

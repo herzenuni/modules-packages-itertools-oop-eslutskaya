@@ -15,7 +15,5 @@ class Player:
 		self.player_id = random.choice(range(MIN_PLAYER_ID, MAX_PLAYER_ID))
 		self.player_name = name
 
-
-
-new_player1 = Player(name = "Nick", type_of_mark = "cross")
-new_player2 = Player(name = "Paul", type_of_mark = "nought")
+# new_player1 = Player(name = "Nick", type_of_mark = "cross")
+# new_player2 = Player(name = "Paul", type_of_mark = "nought")
