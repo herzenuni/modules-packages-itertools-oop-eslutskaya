@@ -3,16 +3,14 @@
 ##  будет содержаться логика игры
 from config import config
 from graphics import *
-from stat import *
-from tkinter import *
 
-from collections import namedtuple
+from stats import Stats
 
 
 import player
 class Game:
 
-        def __init__(self, whos_turn, path_to_stat_file, field_size, stat):
+        def __init__(self, whos_turn, path_to_stat_file, field_size, stat = None):
                 self.new_game(whos_turn, path_to_stat_file, field_size, stat)
 
       
@@ -21,7 +19,8 @@ class Game:
                 self.game = []
                 self.winner = 0     #TODO Use None, young padavan
                 self.n = field_size
-                # print (type (stat))
+
+                print (type (stat))
                 for i in range(self.n):
                         b=[]
                         for j in range(self.n):
@@ -56,10 +55,9 @@ class Game:
                                 self.test()
                                 return 0
 
-stat = Stat(config["path_to_stat_file"])
 
-
-game = Game(config["whos_turn"], config["path_to_stat_file"], config["field_size"], stat)
+stats = Stats(config["path_to_stat_file"])
+game = Game(config["whos_turn"], config["path_to_stat_file"], config["field_size"], stats)
 
 root = Tk()
 graphics = Graphics(root, game, config["canvas_size"], config["field_size"])

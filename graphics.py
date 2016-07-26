@@ -5,6 +5,7 @@
 ##  будет описан графический интерфейс для работы игры
 
 from tkinter import *
+
 class Graphics:
     """
     Интерфейсссссссссс
@@ -54,6 +55,4 @@ class Graphics:
         self.canvas.create_line([x//c*c+k, y//c*c+k], [x//c*c+c-k,y//c*c+c-k], width = 5)  
         self.canvas.create_line([x//c*c+k, y//c*c+c-k], [x//c*c+c-k, y//c*c+k], width = 5)
      
-
-
 
