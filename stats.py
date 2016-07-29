@@ -26,12 +26,10 @@ class Stats:
 		Stats.file = file
 
 
-
-
 	def get_results_from_file(self):
 		"""получить все результаты из файла""" 
 		try:
-			with open(file, newline="") as csvfile:
+			with open(Stats.file, newline="") as csvfile:
 				csvreader = csv.reader(csvfile, delimiter=',', quotechar='|')
 				for row in csvreader:
 					result = Result(row[0], row[1], row[2], row[3])
@@ -46,15 +44,18 @@ class Stats:
 		return Stats.results_table
 
 
-	def write_result_to_file(self):
+	def write_result_to_file(self, new_result = None):
 		"""записать результат в файл""" 
-		if self.new_result:
-			try:
-				with open(file, 'a+', newline="") as csvfile:
-					csvwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-					csvwriter.writerow(self.new_result)
-			except IOError:
-				print ("Input/output error with new result {}".format(self.new_result))
+		if not new_result:
+			self.new_result = new_result
+			if not Stats.file:
+				try:
+					with open(Stats.file, 'a+', newline="") as csvfile:
+						csvwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+						csvwriter.writerow(self.new_result)
+						return self.new_result
+				except IOError:
+					return "Input/output error with new result {}".format(self.new_result)
 
 
 
@@ -66,6 +67,11 @@ class Stats:
 			for el in Stats.results_table:
 				print(el.winner_id, el.winner_name, el.game_time, el.type_of_mark)
 		return self.new_result
+
+	def get_filename(self):
+
+		return Stats.file
+
 
 # Result = namedtuple("Result" , ["winner_id", "winner_name", "game_time", "type_of_mark"])
 # new_result1 = Result("1", "Ivan", "600", "nought")
