@@ -3,6 +3,7 @@
 ##  будет описана сущность "Статистика" (таблица результатов)
 from collections import namedtuple
 import csv
+import random
 
 
 class Stats:
@@ -14,7 +15,7 @@ class Stats:
 	 - записывать в файл результат, 
 	 - показать последний результат.
 	"""
-	Result = namedtuple("Result", ["game_id", "winner_id", "player1_name", "player2_name", "winner_name", "game_time", "type_of_mark"])
+	Result = namedtuple("Result", ["game_id", "player1_name", "player2_name", "winner_name", "type_of_mark"])
 	
 
 	results_table = []
@@ -44,18 +45,23 @@ class Stats:
 		return Stats.results_table
 
 
-	def write_result_to_file(self, new_result = None):
+	def write_result_to_file(self, new_result):
 		"""записать результат в файл""" 
-		if not new_result:
+
+		print ("111")
+		if new_result:
+			print ("2")
 			self.new_result = new_result
-			if not Stats.file:
-				try:
-					with open(Stats.file, 'a+', newline="") as csvfile:
-						csvwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-						csvwriter.writerow(self.new_result)
-						return self.new_result
-				except IOError:
-					return "Input/output error with new result {}".format(self.new_result)
+			Stats.file = "stat.csv"
+			try:
+				print ("3")
+				with open(Stats.file, 'a+', newline="") as csvfile:
+					csvwriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+					csvwriter.writerow(self.new_result)
+					print ("ololololol ", self.new_result)
+					return self.new_result
+			except IOError:
+				return "Input/output error with new result {}".format(self.new_result)
 
 
 

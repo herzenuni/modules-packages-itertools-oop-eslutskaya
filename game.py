@@ -7,16 +7,19 @@ from graphics import *
 from stats import Stats
 
 
-import player
+from player import Player
+import random
+
+
 class Game:
 
-        def __init__(self, whos_turn, path_to_stat_file, field_size, stat = None):
+        def __init__(self, whos_turn, path_to_stat_file, field_size, stats = None):
                 self.whos_turn = whos_turn
                 self.path_to_stat_file = path_to_stat_file
                 self.field_size = field_size
-                self.stat = stat
+                self.stats = stats
       
-        def new_game(self, whos_turn, path_to_stat_file, field_size, stat):
+        def new_game(self, whos_turn, path_to_stat_file, field_size, stats ):
                 self.move = whos_turn
                 self.game = []
                 self.winner = True
@@ -43,13 +46,26 @@ class Game:
                                 self.game[i][j] = self.move
                                 self.move = 0
                                 self.winner = self.test()
-                                if self.winner == 1 or self.winner == 0: print(self.winner)
+                                if self.winner == 1 or self.winner == 0:
+                                    winner_name = "Ololo"
+                                    new_result = [random.choice(range(0, 100000)), self.player_1,  self.player_2, winner_name, self.winner]
+                                    print(new_result)
+                                    self.stats.write_result_to_file(new_result)
+                                    print(self.winner)
+
                                 return 1
                         elif self.move == 0:
                                 self.game[i][j] = self.move
                                 self.move = 1
                                 self.winner = self.test()
-                                if self.winner == 1 or self.winner == 0: print(self.winner)
+                                if self.winner == 1 or self.winner == 0:
+                                    print(self.winner)
+                                    winner_name = "Ololo"
+                                    new_result = [random.choice(range(0, 100000)), self.player_1,  self.player_2, winner_name, self.winner]
+                                    print(new_result)
+                                    self.stats.write_result_to_file(new_result)
+                                    print(self.winner)
+
                                 return 0
 
 

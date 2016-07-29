@@ -6,6 +6,8 @@
 
 from tkinter import *
 
+from player import Player
+
 class Graphics:
     """
     Интерфейсссссссссс
@@ -52,7 +54,8 @@ class Graphics:
         self.frame_player.grid()
 
     def new_game(self):
-        self.game.new_game(self.game.whos_turn, self.game.path_to_stat_file, self.game.field_size, self.game.stat)
+        
+        self.game.new_game(self.game.whos_turn, self.game.path_to_stat_file, self.game.field_size, self.game.stats)
         self.frame_canvas.grid_forget()
         self.frame_player.grid()
         self.draw_rect()                                # Рисует квадрат
@@ -65,7 +68,19 @@ class Graphics:
             self.game.winner = None
             self.game.player_1 =self.player_inp_1.get()
             self.game.player_2 =self.player_inp_2.get()
+            self.player1 = Player(name = self.game.player_1)
+            if (self.player1.type_of_mark == 1):
+                pl2_type  = 0 
+            else:
+                pl2_type = 1
+
+            self.player2 = Player(name = self.game.player_2, type_of_mark = pl2_type)
+            print (self.player1.name, self.player1.type_of_mark)
+
+            print (self.player2.name, self.player2.type_of_mark)
+            
             print(self.game.player_1,self.game.player_2)
+            
             self.frame_player.grid_forget()
             self.frame_canvas.grid()
 

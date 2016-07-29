@@ -22,7 +22,7 @@ class Player:
 		else:
 			self.type_of_mark = type_of_mark
 
-		self.player_name = name
+		self.name = name
 
 
 	@property
