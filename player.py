@@ -23,21 +23,15 @@ class Player:
 			self.type_of_mark = type_of_mark
 
 		self.player_name = name
-		self.is_winner = False
+
 
 	@property
-	def get_is_winner_prop(self): 
-		return self.is_winner
+	def is_winner(self): 
+		return self._is_winner
 
-	@property.setter
-	def set_is_winner_prop(self, is_winner = True):
-		self.is_winner = is_winner
+
+	@is_winner.setter
+	def is_winner(self, new_arg):
+		self._is_winner = new_arg
 
 		
-# new_players = list(range(0,10))
-# for i in new_players:
-# 	new_players[i] = Player(name = "Nick")
-# 	print(new_players[i].__dict__)
-
-# print(new_players)
-# new_player2 = Player(name = "Paul", type_of_mark = "nought")
